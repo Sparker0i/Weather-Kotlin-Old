@@ -17,7 +17,19 @@ android {
     }
 
     buildTypes {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        def owmApiKey = properties.getProperty("owm_api_key" , "")
+
+        debug {
+            buildConfigField 'String', "OWM_API_KEY", "$owmApiKey"
+            resValue 'string', "api_key", "$owmApiKey"
+        }
+
         release {
+            buildConfigField 'String', "OWM_API_KEY", "$owmApiKey"
+            resValue 'string', "api_key", "$owmApiKey"
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
