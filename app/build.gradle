@@ -20,8 +20,8 @@ android {
     buildTypes {
         Properties properties = new Properties()
         properties.load(project.rootProject.file("local.properties").newDataInputStream())
-        def owmApiKey = properties.getProperty("owm_api_key" , "")
-        def owmApiUrl = properties.getProperty("owm_api_url" , "")
+        def owmApiKey = properties.getProperty("owm_api_key", "")
+        def owmApiUrl = properties.getProperty("owm_api_url", "")
 
         debug {
             buildConfigField 'String', "OWM_API_KEY", "$owmApiKey"
@@ -43,14 +43,6 @@ android {
         }
     }
 
-    buildFeatures {
-        compose true
-    }
-
-// To inline the bytecode built with JVM target 1.8 into
-// bytecode that is being built with JVM target 1.6. (e.g. navArgs)
-
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -69,6 +61,7 @@ dependencies {
 
     //Moshi
     implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion")
 
     //Retrofit2
