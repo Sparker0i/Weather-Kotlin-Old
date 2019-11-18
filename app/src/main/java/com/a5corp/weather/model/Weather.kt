@@ -1,7 +1,9 @@
 package com.a5corp.weather.model
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class CurrentWeather(
     @Json(name = "coord") val coordinates: Coordinates,
     @Json(name = "weather") val condition: List<Condition>,
@@ -18,16 +20,18 @@ data class CurrentWeather(
     @Json(name = "cod") val status: Int
 )
 
+@JsonClass(generateAdapter = true)
 data class Coordinates(
     @Json(name = "lat") val latitude: String,
     @Json(name = "lon") val longitude: String
 )
-
+@JsonClass(generateAdapter = true)
 data class Condition(
     @Json(name = "id") val id: Int,
     @Json(name = "description") val description: String
 )
 
+@JsonClass(generateAdapter = true)
 data class Weather(
     @Json(name = "temp") val temperature: Double,
     @Json(name = "pressure") val pressure: Double,
@@ -36,23 +40,28 @@ data class Weather(
     @Json(name = "temp_max") val maximumTemperature: Double
 )
 
+@JsonClass(generateAdapter = true)
 data class Wind(
     @Json(name = "speed") val speed: Double,
     @Json(name = "deg") val degree: Double
 )
 
+@JsonClass(generateAdapter = true)
 data class Cloud(@Json(name = "all") val cloudiness: Double)
 
+@JsonClass(generateAdapter = true)
 data class Rain(
     @Json(name = "1h") val oneHour: Double,
     @Json(name = "3h") val threeHour: Double
 )
 
+@JsonClass(generateAdapter = true)
 data class Snow(
     @Json(name = "1h") val oneHour: Double,
     @Json(name = "3h") val threeHour: Double
 )
 
+@JsonClass(generateAdapter = true)
 data class Sys(
     @Json(name = "message") val message: Double,
     @Json(name = "country") val country: String,
