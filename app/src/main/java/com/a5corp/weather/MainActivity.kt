@@ -2,15 +2,13 @@ package com.a5corp.weather
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.a5corp.weather.service.ApiFactory
-import com.a5corp.weather.utils.AppConstants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
-    val TAG = MainActivity::class.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,14 +22,14 @@ class MainActivity : AppCompatActivity() {
                 val response = request.await()
                 if(response.isSuccessful) {
                     val weatherResponse = response.body()
-                     println(weatherResponse)
+                    Timber.tag("Response").d(weatherResponse.toString())
                 }
                 else {
-                    Log.d(TAG, response.errorBody().toString())
+                    Timber.d(response.errorBody().toString())
                 }
             }
             catch (e: Exception) {
-
+                e.printStackTrace()
             }
         }
     }
