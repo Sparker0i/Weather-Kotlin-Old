@@ -2,6 +2,7 @@ package com.a5corp.weather
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
 import com.a5corp.weather.service.ApiFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
