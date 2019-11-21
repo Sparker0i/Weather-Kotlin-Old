@@ -13,4 +13,6 @@ object AppConstants {
     const val UNITS_PARAM = "units"
     const val DAYS_PARAM = "cnt"
     const val API_KEY_PARAM = "apikey"
+    const val LATITUDE_PARAM = "lat"
+    const val LONGITUDE_PARAM = "lon"
 }
