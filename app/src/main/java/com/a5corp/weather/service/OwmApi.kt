@@ -10,14 +10,14 @@ import retrofit2.http.Query
 
 interface OwmApi {
     @GET("weather")
-    fun getCurrentWeatherDataByName(@Query(AppConstants.QUERY_PARAM) city: String, @Query(AppConstants.UNITS_PARAM) units: String): Deferred<Response<CurrentWeather>>
+    fun getCurrentWeatherDataByName(@Query(AppConstants.QUERY_PARAM) city: String, @Query(AppConstants.UNITS_PARAM) units: String): Deferred<CurrentWeather>
 
     @GET("forecast/daily")
-    fun getDailyDataByName(@Query(AppConstants.QUERY_PARAM) city: String, @Query(AppConstants.UNITS_PARAM) units: String, @Query(AppConstants.DAYS_PARAM) days: Int): Deferred<Response<DailyWeather>>
+    fun getDailyDataByName(@Query(AppConstants.QUERY_PARAM) city: String, @Query(AppConstants.UNITS_PARAM) units: String, @Query(AppConstants.DAYS_PARAM) days: Int): Deferred<DailyWeather>
 
     @GET("weather")
-    fun getCurrentWeatherDataByCoordinates(@Query(AppConstants.LATITUDE_PARAM) lat: String, @Query(AppConstants.LONGITUDE_PARAM) lon: String, @Query(AppConstants.UNITS_PARAM) units: String): Deferred<Response<CurrentWeather>>
+    fun getCurrentWeatherDataByCoordinates(@Query(AppConstants.LATITUDE_PARAM) lat: String, @Query(AppConstants.LONGITUDE_PARAM) lon: String, @Query(AppConstants.UNITS_PARAM) units: String): Deferred<CurrentWeather>
 
     @GET("forecast/daily")
-    fun getDailyDataByCoordinates(@Query(AppConstants.LATITUDE_PARAM) lat: String, @Query(AppConstants.LONGITUDE_PARAM) lon: String, @Query(AppConstants.UNITS_PARAM) units: String, @Query(AppConstants.DAYS_PARAM) days: Int): Deferred<Response<DailyWeather>>
+    fun getDailyDataByCoordinates(@Query(AppConstants.LATITUDE_PARAM) lat: String, @Query(AppConstants.LONGITUDE_PARAM) lon: String, @Query(AppConstants.UNITS_PARAM) units: String, @Query(AppConstants.DAYS_PARAM) days: Int): Deferred<DailyWeather>
 }

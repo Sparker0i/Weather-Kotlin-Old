@@ -2,36 +2,26 @@ package com.a5corp.weather
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 
-import com.a5corp.weather.service.ApiFactory
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import timber.log.Timber
+import com.a5corp.weather.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
+    var mainViewModel: MainViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val weatherService = ApiFactory.owmApi
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        GlobalScope.launch(Dispatchers.Main) {
-            val request = weatherService.getCurrentWeatherDataByName("Bengaluru", "metric")
-            try {
-                val response = request.await()
-                if(response.isSuccessful) {
-                    val weatherResponse = response.body()
-                    Timber.tag("Response").d(weatherResponse.toString())
-                }
-                else {
-                    Timber.d(response.errorBody().toString())
-                }
-            }
-            catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
+        mainViewModel!!.weatherData.observe(this, Observer { weather ->
+            println(weather)
+        })
+
+        mainViewModel!!.dailyWeather.observe(this, Observer { weather ->
+            println(weather)
+        })
     }
 }
