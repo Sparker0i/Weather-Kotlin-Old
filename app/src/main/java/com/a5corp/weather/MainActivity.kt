@@ -1,33 +1,27 @@
 package com.a5corp.weather
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.Composable
-import androidx.ui.core.Text
-import androidx.ui.core.setContent
-import androidx.ui.material.MaterialTheme
-import androidx.ui.tooling.preview.Preview
+import android.os.Bundle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+
+import com.a5corp.weather.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
+    var mainViewModel: MainViewModel? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            MaterialTheme {
-                Greeting("Android")
-            }
-        }
-    }
-}
+        setContentView(R.layout.activity_main)
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-@Preview
-@Composable
-fun DefaultPreview() {
-    MaterialTheme {
-        Greeting("Android")
+        mainViewModel!!.weatherData.observe(this, Observer { weather ->
+            println(weather)
+        })
+
+        mainViewModel!!.dailyWeather.observe(this, Observer { weather ->
+            println(weather)
+        })
     }
 }
