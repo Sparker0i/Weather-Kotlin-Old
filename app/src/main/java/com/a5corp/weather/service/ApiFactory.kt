@@ -52,7 +52,7 @@ object ApiFactory {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
-    fun getService(): OwmApi {
+    fun getWeatherService(): OwmApi {
         return owmApi ?: synchronized(this) {
             val instance = retrofit(AppConstants.OWM_API_URL)
                 .create(OwmApi::class.java)
