@@ -17,7 +17,7 @@ class WeatherRepository() {
     private val coroutineScope = CoroutineScope(Dispatchers.IO + completableJob)
 
     private val apiCoroutineService by lazy {
-        ApiFactory.getService()
+        ApiFactory.getWeatherService()
     }
 
     fun getCurrentWeather(): MutableLiveData<CurrentWeather> {
